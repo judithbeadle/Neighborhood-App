@@ -5,7 +5,7 @@ class ListItem extends Component{
 	render(){
 		return(
 			
-			<li>Location Name</li>
+			<p>{this.props.locationName}</p>
 			
 		)
 	}

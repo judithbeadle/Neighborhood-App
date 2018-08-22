@@ -5,6 +5,14 @@ import Sidebar from './Sidebar.js';
 
 class App extends Component {
 
+  locations = [
+    { name: 'Location Name' },
+    { name: 'reggrvdv' },
+    { name: 'tbsbt' },
+    { name: 'bvtstvrt' },
+    { name: 'Location Name' }
+  ]
+
   // Lifecycle Event - first call to do stuff
 
   componentDidMount(){
@@ -38,13 +46,16 @@ class App extends Component {
   }
 
   render() {
+
       return (
         <div className="App">
           {/* Create a place to put the map in the HTML */}
           <div id="map">map</div>
           <div id="sidebar">
 
-            <Sidebar />
+            <Sidebar 
+              locations = {this.locations}
+            />
 
           </div>
 

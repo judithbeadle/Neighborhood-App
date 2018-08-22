@@ -4,11 +4,19 @@ import ListItem from './ListItem'
 class Sidebar extends Component{
 	// the sidebar holds the list of places
 	render(){
+
+		const { locations } = this.props
+
 		return(
 			<div className="List">
 				<h2>In the Neighborhood</h2>
 				<ol>
-					<ListItem />
+					{locations.map((singleLocation) => (
+						<li key={singleLocation.name}>
+							<ListItem locationName= {singleLocation.name}/>
+						</li>
+					))}
+					
 				</ol>
 			</div>
 		)
