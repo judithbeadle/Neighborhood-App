@@ -41,6 +41,10 @@ initMap = () => {
       <div className="App">
         {/* Create a place to put the map in the HTML */}
         <div id="map">map</div>
+        <div id="sidebar">
+        Here goes the sidebar
+
+        </div>
 
       </div>
     );
