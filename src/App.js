@@ -34,15 +34,21 @@ class App extends Component {
   // initialize map
 
   initMap = () => {
-
+    const sprengelArea = {lat: 52.541976, lng: 13.3467278}
     const map = new window.google.maps.Map(document.getElementById('map'), {
       // set center point
-      center: {lat: 52.52000659999999, lng: 13.404954},
+      center: sprengelArea,
       // set zoom level
-      zoom: 13,
+      zoom: 15,
       // set styles - see https://mapstyle.withgoogle.com/
       styles: []
     });
+    
+    const marker = new window.google.maps.Marker({
+      position: sprengelArea,
+      map: map,
+      titel: 'First Marker'
+    })
   }
 
   render() {
