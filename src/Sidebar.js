@@ -12,8 +12,8 @@ class Sidebar extends Component{
 				<h2>In the Neighborhood</h2>
 				<ol>
 					{locations.map((singleLocation) => (
-						<li key={singleLocation.name}>
-							<ListItem locationName= {singleLocation.name}/>
+						<li key={singleLocation.id}>
+							<ListItem locationName= {singleLocation.title}/>
 						</li>
 					))}
 					

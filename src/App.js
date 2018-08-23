@@ -3,16 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 import Sidebar from './Sidebar.js';
 import Map from './Map.js';
+import * as LocationsAPI from './LocationsAPI'
 
 class App extends Component {
 
-  locations = [
-    { name: 'Location Nme' },
-    { name: 'reggrvdv' },
-    { name: 'tbsbt' },
-    { name: 'bvtstvrt' },
-    { name: 'Location Name' }
-  ]
+  state = {
+    locations: [],
+    query: '',
+    showingLocations: []
+  }
+
+ 
+
+  // get all locations
+  componentDidMount() {
+     LocationsAPI.getAll()
+     .then((locations) => {
+      this.setState({locations})
+      this.setState({originalLocations: locations})
+    }).catch((error) => {
+      alert('Error While getting All Locations data from FourSquare API >> Sorry!! Locations Data Will not be loaded or displayed ')
+      console.log('Error While Getting All Locations')
+      
+})
+  }
+
+  
 
   
 
@@ -34,7 +50,7 @@ class App extends Component {
           <div id="sidebar">
 
             <Sidebar 
-              locations = {this.locations}
+              locations = {this.state.locations}
             />
 
           </div>
