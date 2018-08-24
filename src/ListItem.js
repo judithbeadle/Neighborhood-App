@@ -5,10 +5,12 @@ class ListItem extends Component{
 	render(){
 		return(
 			<div className="list-item-wrapper">
-				<h3>{this.props.locationName}</h3>
+				<h3>{ this.props.locationName }</h3>
 				<div className="more-info">
-					<p> { this.props.address }</p>
-					<p> { this.props.category }</p>
+					{// converting to html thanks to: https://stackoverflow.com/questions/39758136/render-html-string-as-real-html-in-a-react-component
+					}
+					<p dangerouslySetInnerHTML={{ __html: this.props.address }} />
+					<p> { this.props.category } </p>
 				</div>
 			</div>
 			
