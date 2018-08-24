@@ -13,8 +13,6 @@ class App extends Component {
     showingLocations: []
   }
 
- 
-
   // get all locations
   componentDidMount() {
      LocationsAPI.getAll()
@@ -24,30 +22,18 @@ class App extends Component {
     }).catch((error) => {
       alert('Error While getting All Locations data from FourSquare API >> Sorry!! Locations Data Will not be loaded or displayed ')
       console.log('Error While Getting All Locations')
-      
-})
+    })
   }
 
-  
-
-  
-
   render() {
-
       return (
         <div className="App">
-          {/* Create a place to put the map in the HTML */}
+          
+          {/* #map is targeted by the initMap function to create the map */}
           <div id="map">
-
             <Map
-              googleMapURL="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDrid_nZpJckzqU2t51-aGhgxd-LjeDD4&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div className="loading-element" />}
-              containerElement={<div style={{ height: `400px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              // passing locations array to map for the markers
               locations = {this.state.locations}
             />
-
           </div>
           <div id="sidebar">
 
@@ -61,6 +47,5 @@ class App extends Component {
       );
     }
 }
-
 
 export default App;

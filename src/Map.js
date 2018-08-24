@@ -1,16 +1,12 @@
-// TODO move map component here
 import React, { Component } from 'react';
-import { Polygon } from 'react-google-maps';
-
 
 class Map extends Component {
 
   // build the map
-
   initMap = () => {
 
-    // Define the LatLng coordinates for the polygon's path.
-    const sprengelLatLngs = [
+    // Define the coordinates for the polygon's path.
+    const coordinates = [
       { lat: 52.5462305, lng: 13.3591175 },
       { lat: 52.543986 , lng: 13.3549976 },
       { lat: 52.5421329, lng: 13.3495474 },
@@ -24,46 +20,49 @@ class Map extends Component {
     ]
 
     // Construct the polygon.
-    const sprengelkiez = new window.google.maps.Polygon({
-      paths: sprengelLatLngs,
+    const area = new window.google.maps.Polygon({
+      paths: coordinates,
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: '#FF0000',
-      fillOpacity: 1
+      fillOpacity: 0.2
     });
 
-    const sprengelCenter = {
+    // define coordinates for the centre of the map
+    const mapCenter = {
       lat: 52.5462305, lng: 13.3591175
     }
+
+    // create the map
     const map = new window.google.maps.Map(document.getElementById('map'), {
       // set center point
-      center: sprengelCenter,
+      center: mapCenter,
       // set zoom level
       zoom: 15,
       // set styles - see https://mapstyle.withgoogle.com/
       styles: []
-
-
     });
 
-    sprengelkiez.setMap(map);
+    // display the area on the map
+    area.setMap(map);
     
+    // create a marker
+    //TODO create several markers based on latlng info of each location
     const marker = new window.google.maps.Marker({
-      position: sprengelCenter,
+      position: mapCenter,
       map: map,
       titel: 'First Marker'
     })
   }
-
 
   // Lifecycle Event - first call to do stuff
   componentDidMount(){
     this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&callback=initMap")
   }
 
-  // Load Map
-
+  // create a script tag that takes the url and passes the key to the google api
+  // this will then call the initMap function
   loadMap = (url) => {
     const index = window.document.getElementsByTagName("script")[0]
     const script = window.document.createElement("script")
@@ -74,14 +73,10 @@ class Map extends Component {
     window.initMap = this.initMap
   }
 
-  
-
-  
   render(){
-    return(
-      <div>Map Template</div>
-    );
+    // since all this is loaded via the parent container #map, nothing needs to render here
+    return(null)
   }
-};
+}
 
-export default Map;
+export default Map
