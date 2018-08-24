@@ -44,6 +44,8 @@ class App extends Component {
               loadingElement={<div className="loading-element" />}
               containerElement={<div style={{ height: `400px` }} />}
               mapElement={<div style={{ height: `100%` }} />}
+              // passing locations array to map for the markers
+              locations = {this.state.locations}
             />
 
           </div>
