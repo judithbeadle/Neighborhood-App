@@ -4,8 +4,10 @@ class ListItem extends Component{
 	// the sidebar holds the list of places
 	render(){
 		return(
-			
-			<p>{this.props.locationName}</p>
+			<li key={this.props.itemKey}>
+			<h3>{this.props.locationName}</h3>
+			<p> { this.props.address }</p>
+			</li>
 			
 		)
 	}

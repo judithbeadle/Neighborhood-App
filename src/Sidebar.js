@@ -5,6 +5,7 @@ class Sidebar extends Component{
 	// the sidebar holds the list of places
 	render(){
 
+		// getting the locations array from the parent
 		const { locations } = this.props
 
 		return(
@@ -12,9 +13,14 @@ class Sidebar extends Component{
 				<h2>In the Neighborhood</h2>
 				<ol>
 					{locations.map((singleLocation) => (
-						<li key={singleLocation.id}>
-							<ListItem locationName= {singleLocation.title}/>
-						</li>
+						
+							<ListItem 
+								itemKey = {singleLocation.id}
+								locationName= { singleLocation.title } // returns a string
+								address= { singleLocation.vicinity } // returns a html formated string
+								position= { singleLocation.position } // returns an array of latlang values
+							/>
+						
 					))}
 					
 				</ol>
