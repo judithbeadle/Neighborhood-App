@@ -13,7 +13,7 @@ class Sidebar extends Component{
 				<h2>In the Neighborhood</h2>
 				<ol>
 					{locations.map((singleLocation) => (
-						
+						<li key={ singleLocation.id }>
 							<ListItem 
 								itemKey = {singleLocation.id}
 								locationName= { singleLocation.title } // returns a string
@@ -21,7 +21,7 @@ class Sidebar extends Component{
 								position= { singleLocation.position } // returns an array of latlang values
 								category = { singleLocation.category } // returns a html formated string
 							/>
-						
+						</li>
 					))}
 					
 				</ol>
