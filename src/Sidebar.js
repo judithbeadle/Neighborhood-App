@@ -19,6 +19,7 @@ class Sidebar extends Component{
 								locationName= { singleLocation.title } // returns a string
 								address= { singleLocation.vicinity } // returns a html formated string
 								position= { singleLocation.position } // returns an array of latlang values
+								category = { singleLocation.category } // returns a html formated string
 							/>
 						
 					))}
