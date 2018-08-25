@@ -1,5 +1,9 @@
 // https://maps.googleapis.com/maps/api/geocode/json?address=Sprengelkiez,Germany&language=en&KEY=AlzaSyBfB8UMdS7
 
+Format for latlng geocoding
+
+https://maps.googleapis.com/maps/api/geocode/json?latlng=33.1262476,-117.3115765&language=en&KEY=AlzaSyBfB8UMdS7
+
 {
    "results" : [
       {
@@ -107,3 +111,15 @@ v1/autosuggest
 &Accept-Language=en-US%2Cen%3Bq%3D0.9%2Cde%3Bq%3D0.8
 &app_id=ZVPkzqyqK2EBP6hyfxKR
 &app_code=N0JN1UWoTXqfNVuwdwhONw
+
+
+
+html with area highlight:
+
+<iframe src="
+
+https://www.google.com/maps/embed
+?pb=!1m18!1m12!1m3!1d9706.108565371427!2d13.346727842227082!3d52.54198907725739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a8518212cce335%3A0xd7c328b399996d28!2sSprengelkiez%2C+13353+Berlin!5e0!3m2!1sen!2sde!4v1535103342302" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+
