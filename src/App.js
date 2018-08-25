@@ -7,46 +7,54 @@ import * as LocationsAPI from './LocationsAPI'
 
 class App extends Component {
 
-  state = {
-    initialResult: [],
-    locations: [],
-    query: '',
-    showingLocations: []
-  }
+   state = {
+      initialResult: [],
+      locations: [],
+      query: '',
+      showingLocations: []
+   }
 
-
-  // get all locations
-  componentDidMount() {
+   // get all locations
+   componentDidMount() {
      LocationsAPI.getAll()
      .then((initialResult) => {
         this.setState({ initialResult })
-        this.setState({ locations: initialResult })
+        this.setState({ locations: initialResult }) // this needs to be  removed here and get set as a filtered result matching ploygon
       }).catch((error) => {
         alert('Error while getting Locations from HERE.com ')
         console.log('Error While Getting All Locations')
       })
-  }
+   }
 
-  setMarkers = (map) => {
+   setMarkers = (map) => {
+      // clear old markers
 
-    this.state.locations.map(location => {
-      let llat = location.position[0]
-      let llng = location.position[1]
-      let position = { lat: llat, lng: llng }
+      // then create new ones based on current array of locations
+      this.state.locations.map(location => {
+         let llat = location.position[0]
+         let llng = location.position[1]
+         let position = { lat: llat, lng: llng }
 
-      
-      const marker = new window.google.maps.Marker({
-        position: position,
-        map: map
+         const marker = new window.google.maps.Marker({
+           position: position,
+           map: map
+         })
+         console.log('this is the set marker function: ' + map)
       })
-      console.log('this is the set marker function: ' + map)
+   }
 
-    })
-  }
+   // TODO update locations
+         
+         // filter current locations by query
 
 
 
-  render() {
+
+  // TODO update query function
+
+
+
+   render() {
       return (
         <div className="App">
           
