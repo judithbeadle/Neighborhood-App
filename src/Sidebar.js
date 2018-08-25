@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import ListItem from './ListItem'
 
 class Sidebar extends Component{
+
+	// function to get parent to update list on click
+	updateLocations = (locations) => {
+		this.props.onUpdateLocations(locations)
+	}
+
 	// the sidebar holds the list of places
 	render(){
 
