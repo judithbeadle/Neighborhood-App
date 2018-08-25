@@ -11,3 +11,9 @@ https://developers.google.com/maps/documentation/javascript/examples/polygon-sim
 
 // map documentation & tutorial
 https://developers.google.com/maps/documentation/javascript/tutorial
+
+// info on places with here
+https://developer.here.com/
+
+// quickly finding coordinates
+https://www.latlong.net/

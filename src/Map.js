@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Marker from './Marker.js'
 
 class Map extends Component {
 
