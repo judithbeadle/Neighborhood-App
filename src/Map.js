@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import Marker from './Marker.js'
 
 class Map extends Component {
 
+  state = {
+    map: {}
+  }
+ 
+  // Lifecycle Event - first call to do stuff
+  componentDidMount(){
+    this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&callback=initMap")
+  }
   // build the map
   initMap = () => {
 
@@ -31,7 +40,7 @@ class Map extends Component {
 
     // define coordinates for the centre of the map
     const mapCenter = {
-      lat: 52.5462305, lng: 13.3591175
+      lat: 52.541932, lng: 13.357156
     }
 
     // create the map
@@ -44,23 +53,14 @@ class Map extends Component {
       styles: []
     });
 
+    // make the map var available for the render function
+    this.setState({map: map})
+
     // display the area on the map
     area.setMap(map);
     
-    // create a marker
-    //TODO create several markers based on latlng info of each location
-    const marker = new window.google.maps.Marker({
-      position: mapCenter,
-      map: map,
-      titel: 'First Marker'
-    })
   }
-
-  // Lifecycle Event - first call to do stuff
-  componentDidMount(){
-    this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&callback=initMap")
-  }
-
+  
   // create a script tag that takes the url and passes the key to the google api
   // this will then call the initMap function
   loadMap = (url) => {
@@ -74,7 +74,13 @@ class Map extends Component {
   }
 
   render(){
-    // since all this is loaded via the parent container #map, nothing needs to render here
+
+    // grabbing the map object via state for the parent App.js set Markers 
+    let map = this.state.map
+    // run the set Markers function in the parent passing the map object
+    this.props.onSetMarkers(map)
+
+    // nothing to return from here
     return(null)
   }
 }
