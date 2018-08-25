@@ -10,6 +10,7 @@ class App extends Component {
    state = {
       initialResult: [],
       locations: [],
+      markers: [],
       query: '',
       showingLocations: []
    }
@@ -26,8 +27,14 @@ class App extends Component {
       })
    }
 
+   clearMarkers = () => {
+      this.state.markers.map(marker => {
+         marker.setMap(null)
+         console.log('I have deleted a marker')
+      })
+   }
+
    setMarkers = (map) => {
-      // clear old markers
 
       // then create new ones based on current array of locations
       this.state.locations.map(location => {
@@ -39,7 +46,8 @@ class App extends Component {
            position: position,
            map: map
          })
-         console.log('this is the set marker function: ' + map)
+         this.state.markers.push(marker)
+         console.log('Just created this  '+ marker + ' on this ' + map)
       })
    }
 
@@ -63,6 +71,7 @@ class App extends Component {
             <Map
               locations = {this.state.locations}
               onSetMarkers={(map) => this.setMarkers(map)}
+              onClearMarkers={(map) => this.clearMarkers(map)}
             />
           </div>
           <div id="sidebar">

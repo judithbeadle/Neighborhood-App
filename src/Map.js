@@ -72,11 +72,8 @@ class Map extends Component {
     window.initMap = this.initMap
   }
 
-  clearMap = (map) => {
-    this.props.onSetMarkers(null);
-  }
-
   updateMarkers = (map) => {
+    this.props.onClearMarkers()
     this.props.onSetMarkers(map)
   }
 
@@ -85,8 +82,8 @@ class Map extends Component {
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
     // run the set Markers function in the parent passing the map object
-    this.updateMarkers(map)
-    
+    this.props.onSetMarkers(map)
+
     // nothing to return from here
     return(null)
   }
