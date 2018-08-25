@@ -8,6 +8,7 @@ import * as LocationsAPI from './LocationsAPI'
 class App extends Component {
 
   state = {
+    initialResult: [],
     locations: [],
     query: '',
     showingLocations: []
@@ -17,11 +18,11 @@ class App extends Component {
   // get all locations
   componentDidMount() {
      LocationsAPI.getAll()
-     .then((locations) => {
-        this.setState({locations})
-        this.setState({originalLocations: locations})
+     .then((initialResult) => {
+        this.setState({ initialResult })
+        this.setState({ locations: initialResult })
       }).catch((error) => {
-        alert('Error while getting Locations')
+        alert('Error while getting Locations from HERE.com ')
         console.log('Error While Getting All Locations')
       })
   }
@@ -32,6 +33,7 @@ class App extends Component {
       let llat = location.position[0]
       let llng = location.position[1]
       let position = { lat: llat, lng: llng }
+
       
       const marker = new window.google.maps.Marker({
         position: position,
