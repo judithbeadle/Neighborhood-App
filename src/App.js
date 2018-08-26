@@ -8,10 +8,10 @@ import * as LocationsAPI from './LocationsAPI'
 class App extends Component {
 
    state = {
-      initialResult: [],
+      //initialResult: [],
       locations: [],
       markers: [],
-      query: '',
+      curCategory: 'bar-pub',
       showingLocations: []
    }
 
@@ -19,8 +19,9 @@ class App extends Component {
    componentDidMount() {
      LocationsAPI.getAll()
      .then((initialResult) => {
-        this.setState({ initialResult })
-        this.setState({ locations: initialResult }) // this needs to be  removed here and get set as a filtered result matching ploygon
+        //this.setState({ initialResult })
+        this.getLocationsInArea(initialResult)
+        //this.setState({ locations: initialResult }) // this needs to be  removed here and get set as a filtered result matching ploygon
       }).catch((error) => {
         alert('Error while getting Locations from HERE.com ')
         console.log('Error While Getting All Locations')
@@ -34,10 +35,29 @@ class App extends Component {
       })
    }
 
+   getLocationsInArea(result){
+      // filter locations on area
+      let locationsInArea = result.filter(location => (
+         location.title.length > 8
+         )
+      )
+
+      this.setState({locations: locationsInArea})
+
+     console.log(locationsInArea);
+     this.setState( { locations: locationsInArea })
+   }
+
    setMarkers = (map) => {
 
+      let newLocations = this.state.locations.filter(location => (
+         location.category === this.state.curCategory
+         )
+      )
+
       // then create new ones based on current array of locations
-      this.state.locations.map(location => {
+      newLocations.map(location => {
+
          let llat = location.position[0]
          let llng = location.position[1]
          let position = { lat: llat, lng: llng }
@@ -51,11 +71,12 @@ class App extends Component {
       })
    }
 
-   // TODO update locations
-         
-         // filter current locations by query
-
-
+   updateMarkers(map){
+      
+      this.clearMarkers()
+      this.setMarkers(map)
+      // update list
+   }
 
 
   // TODO update query function
@@ -63,19 +84,23 @@ class App extends Component {
 
 
    render() {
+
+         
       return (
         <div className="App">
           
           {/* #map is targeted by the initMap function to create the map */}
           <div id="map">
             <Map
-              locations = {this.state.locations}
+              //initialResult = {this.state.initialResult}
+              // onUpdateLocations = {(locations, map) => this.updateLocations(locations, map)}
+              
               onSetMarkers={(map) => this.setMarkers(map)}
-              onClearMarkers={(map) => this.clearMarkers(map)}
+              onUpdateMarkers={(map) => this.updateMarkers(map)}
+
             />
           </div>
           <div id="sidebar">
-
             <Sidebar 
               locations = {this.state.locations}
             />

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class Map extends Component {
 
   state = {
-    map: {}
+    map: {},
+    //locations: {}
   }
  
   // Lifecycle Event - first call to do stuff
@@ -72,15 +73,25 @@ class Map extends Component {
     window.initMap = this.initMap
   }
 
-  updateMarkers = (map) => {
-    this.props.onClearMarkers()
-    this.props.onSetMarkers(map)
+  filterLocations = () => {
+    let filteredLocations = this.props.initialResult
+    //let map = map
+    // filter by area
+
+    // pass to parent state
+    this.props.onUpdateLocations(filteredLocations)
+    //this.setState({ locations : filteredLocations })
   }
+
+
 
   render(){
 
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
+    //let initialResult = this.props.initialResult
+    // run the set filter Results function in the parent
+    //this.filterLocations()
     // run the set Markers function in the parent passing the map object
     this.props.onSetMarkers(map)
 
