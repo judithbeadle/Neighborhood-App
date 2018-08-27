@@ -4,12 +4,13 @@ class Map extends Component {
 
   state = {
     map: {},
+    coordinates: []
     //locations: {}
   }
  
   // Lifecycle Event - first call to do stuff
   componentDidMount(){
-    this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&callback=initMap")
+    this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&libraries=geometry&callback=initMap")
   }
   // build the map
   initMap = () => {
@@ -89,10 +90,7 @@ class Map extends Component {
 
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
-    //let initialResult = this.props.initialResult
-    // run the set filter Results function in the parent
-    //this.filterLocations()
-    // run the set Markers function in the parent passing the map object
+    //this.props.onSetArea(area)
     this.props.onSetMarkers(map)
 
     // nothing to return from here

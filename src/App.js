@@ -8,10 +8,10 @@ import * as LocationsAPI from './LocationsAPI'
 class App extends Component {
 
    state = {
-      //initialResult: [],
+      initialResult: [],
       locations: [],
       markers: [],
-      curCategory: 'bar-pub',
+      curCategory: 'test',
       showingLocations: []
    }
 
@@ -19,10 +19,9 @@ class App extends Component {
    componentDidMount() {
      LocationsAPI.getAll()
      .then((initialResult) => {
-        //this.setState({ initialResult })
-        this.getLocationsInArea(initialResult)
-        //this.setState({ locations: initialResult }) // this needs to be  removed here and get set as a filtered result matching ploygon
-      }).catch((error) => {
+        this.setState({ initialResult })
+        this.setCategory('')
+     }).catch((error) => {
         alert('Error while getting Locations from HERE.com ')
         console.log('Error While Getting All Locations')
       })
@@ -33,41 +32,40 @@ class App extends Component {
          marker.setMap(null)
          console.log('I have deleted a marker')
       })
+      this.setState({markers: []})
    }
 
-   getLocationsInArea(result){
-      // filter locations on area
-      let locationsInArea = result.filter(location => (
-         location.title.length > 8
+   setCategory(category){
+      // taking the category and making it available to all functions via state
+      this.setState({curCategory: category})
+      // for initial view and 'all' - no filtering necessary, just show the initial result
+      if(category === ''){
+         this.setState({locations: this.state.initialResult})
+      } else {
+         // filter locations by category
+         let filtered = this.state.initialResult.filter(location => (
+            // this is the function to filter the intial result and set up default list of locations
+            location.category === category
+            //console.log(this.state.curCategory) // this is just for testing purposes - TODO figure out how to implement the containsLocation() function
+            )
          )
-      )
-
-      this.setState({locations: locationsInArea})
-
-     console.log(locationsInArea);
-     this.setState( { locations: locationsInArea })
+         this.setState({locations: filtered})
+      }
+      this.updateMarkers()
    }
 
-   setMarkers = (map) => {
-
-      let newLocations = this.state.locations.filter(location => (
-         location.category === this.state.curCategory
-         )
-      )
-
+   setMarkers = (map, category) => {
+      //this.clearMarkers()
       // then create new ones based on current array of locations
-      newLocations.map(location => {
+      this.state.locations.map(location => {
 
-         let llat = location.position[0]
-         let llng = location.position[1]
-         let position = { lat: llat, lng: llng }
+         let position = { lat: location.position[0], lng: location.position[1] };
 
          const marker = new window.google.maps.Marker({
            position: position,
            map: map
          })
          this.state.markers.push(marker)
-         console.log('Just created this  '+ marker + ' on this ' + map)
       })
    }
 
@@ -102,7 +100,9 @@ class App extends Component {
           </div>
           <div id="sidebar">
             <Sidebar 
-              locations = {this.state.locations}
+
+               onUpdateCategory={(category) => this.setCategory(category)}
+               locations = {this.state.locations}
             />
 
           </div>

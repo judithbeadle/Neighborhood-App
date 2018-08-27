@@ -37,7 +37,7 @@ export const get = (locationId) =>
 */
 
 export const getAll = () =>
-  fetch(`${api}/places/v1/autosuggest?q=drink&in=13.3449264%2C52.5376365%2C13.3660388%2C52.54631620000001&Accept-Language=en-US%2Cen%3Bq%3D0.9%2Cde%3Bq%3D0.8&app_id=ZVPkzqyqK2EBP6hyfxKR&app_code=N0JN1UWoTXqfNVuwdwhONw`)
+  fetch(`${api}/places/v1/autosuggest?q=drink&in=52.5417%2C13.3571%3Br%3D450&Accept-Language=en-US%2Cen%3Bq%3D0.9%2Cde%3Bq%3D0.8&app_id=ZVPkzqyqK2EBP6hyfxKR&app_code=N0JN1UWoTXqfNVuwdwhONw`)
     .then(res => res.json())
     .then(data => data.results)
 
