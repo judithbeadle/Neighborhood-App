@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Sidebar from './Sidebar.js';
 import Map from './Map.js';
@@ -11,8 +11,8 @@ class App extends Component {
       initialResult: [],
       locations: [],
       markers: [],
-      curCategory: 'test',
-      showingLocations: []
+      curCategory: '',
+      activeMarker: ''
    }
 
    // get all locations
@@ -20,26 +20,20 @@ class App extends Component {
      LocationsAPI.getAll()
      .then((initialResult) => {
         this.setState({ initialResult })
-        this.setCategory('')
+        this.setCategory('all')
      }).catch((error) => {
         alert('Error while getting Locations from HERE.com ')
         console.log('Error While Getting All Locations')
       })
    }
 
-   clearMarkers = () => {
-      this.state.markers.map(marker => {
-         marker.setMap(null)
-         console.log('I have deleted a marker')
-      })
-      this.setState({markers: []})
-   }
+
 
    setCategory(category){
       // taking the category and making it available to all functions via state
       this.setState({curCategory: category})
       // for initial view and 'all' - no filtering necessary, just show the initial result
-      if(category === ''){
+      if(category === 'all'){
          this.setState({locations: this.state.initialResult})
       } else {
          // filter locations by category
@@ -54,20 +48,41 @@ class App extends Component {
       this.updateMarkers()
    }
 
-   setMarkers = (map, category) => {
-      //this.clearMarkers()
-      // then create new ones based on current array of locations
-      this.state.locations.map(location => {
+   setActiveMarker (marker) {
+      return function() {  
+         console.log('this :' + marker)
+         this.setState({activeMarker: marker})
+      }
+   } 
 
+   setMarkers = (map, category) => {
+
+      
+      // set markers based current array of locations
+      this.state.locations.map(location => {
          let position = { lat: location.position[0], lng: location.position[1] };
+         let name = location.title
+         let id = location.id
 
          const marker = new window.google.maps.Marker({
            position: position,
-           map: map
+           map: map,
+           title: location.title
          })
+
+         const infowindow = new window.google.maps.InfoWindow({
+            content: name
+         });
+
+         
+
+         window.google.maps.event.addListener(marker, 'click', this.setActiveMarker(id).bind(this));
+
          this.state.markers.push(marker)
+
       })
    }
+
 
    updateMarkers(map){
       
@@ -76,13 +91,20 @@ class App extends Component {
       // update list
    }
 
+    // clear markers off map and markers array for new category query
+   clearMarkers = () => {
+      this.state.markers.map(marker => {
+         marker.setMap(null)
+      })
+      this.setState({markers: []})
+   }
 
-  // TODO update query function
+
 
 
 
    render() {
-
+      
          
       return (
         <div className="App">
@@ -92,9 +114,11 @@ class App extends Component {
             <Map
               //initialResult = {this.state.initialResult}
               // onUpdateLocations = {(locations, map) => this.updateLocations(locations, map)}
-              
+         
               onSetMarkers={(map) => this.setMarkers(map)}
               onUpdateMarkers={(map) => this.updateMarkers(map)}
+
+
 
             />
           </div>
@@ -103,6 +127,8 @@ class App extends Component {
 
                onUpdateCategory={(category) => this.setCategory(category)}
                locations = {this.state.locations}
+               selectMarker = {this.state.selectedMarker}
+               activeMarker = {this.state.activeMarker}
             />
 
           </div>

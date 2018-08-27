@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class Map extends Component {
 
   state = {
     map: {},
-    coordinates: []
-    //locations: {}
+    activeMarker: ''
   }
  
   // Lifecycle Event - first call to do stuff
@@ -61,6 +60,14 @@ class Map extends Component {
     area.setMap(map);
     
   }
+
+  selectMarker = (event) => {
+    this.setState({
+      curCategory: event.target.value
+    })
+    this.props.onUpdateCategory( event.target.value )
+  }
+
   
   // create a script tag that takes the url and passes the key to the google api
   // this will then call the initMap function
@@ -87,7 +94,6 @@ class Map extends Component {
 
 
   render(){
-
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
     //this.props.onSetArea(area)
