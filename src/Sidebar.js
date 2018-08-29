@@ -48,6 +48,8 @@ class Sidebar extends Component{
 	                <option value="all">All</option>
 	                <option value="restaurant">Restaurants</option>
 	                <option value="bar-pub">Bars and Pubs</option>
+	                <option value="theatre-music-culture">Culture</option>
+	                <option value="dance-night-club">Club</option>
 			   	</select>
 				<ol className="locations-list">
 					{locations.map((singleLocation) => (
