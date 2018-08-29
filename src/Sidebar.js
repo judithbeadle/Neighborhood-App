@@ -16,8 +16,7 @@ class Sidebar extends Component{
 
    // when clicked, update both list and markers via app activeLocation id
    activateLocation(clickedLocation){
-		console.log('hey, I am a sidebar knowing all about: ' + clickedLocation.title)
-		this.props.onsetActiveLocation(clickedLocation)
+		this.props.onsetActiveLocation(clickedLocation.title)
 	}
 
 

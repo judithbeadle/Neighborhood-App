@@ -73,18 +73,13 @@ class Map extends Component {
     window.initMap = this.initMap
   }
 
-  filterLocations = () => {
-    let filteredLocations = this.props.initialResult
-    // pass to parent state
-    this.props.onUpdateLocations(filteredLocations)
-    //this.setState({ locations : filteredLocations })
-  }
+ 
 
   render(){
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
     // we need the parents markers to be passed to the map here  
-    this.props.onSetMarkers(map)
+    this.props.onGetMap(map)
 
     // nothing to return from here
     return(null)
