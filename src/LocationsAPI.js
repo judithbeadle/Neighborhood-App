@@ -4,7 +4,7 @@ const appID = 'ZVPkzqyqK2EBP6hyfxKR'
 const appCode = 'N0JN1UWoTXqfNVuwdwhONw'
 const acceptLanguage = 'en-US%2Cen%3Bq%3D0.9%2Cde%3Bq%3D0.8'
 const q = 'drink'
-const area = '13.3449264%2C52.5376365%2C13.3660388%2C52.54631620000001'
+const area = '52.5417%2C13.3571%3Br%3D450'
 
 // Generate a unique token for storing locations data
 let token = localStorage.token
@@ -18,7 +18,7 @@ const headers = {
 }
 
 export const getAll = () =>
-  fetch(`${api}/places/v1/autosuggest?q=${q}&in=52.5417%2C13.3571%3Br%3D450&Accept-Language=${acceptLanguage}&app_id=${appID}&app_code=${appCode}`)
+  fetch(`${api}/places/v1/autosuggest?q=${q}&in=${area}&Accept-Language=${acceptLanguage}&app_id=${appID}&app_code=${appCode}`)
     .then(res => res.json())
     .then(data => data.results)
 

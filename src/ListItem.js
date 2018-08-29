@@ -16,14 +16,16 @@ class ListItem extends Component{
 	render(){
 		let listItem = this.props.listItem
 		let className
+		let ariaExpanded = false
 		if(listItem.title === this.props.activeLocation){
 			className = 'location-container active'
+			ariaExpanded = true
 		} else {
 			className = 'location-container'
 		}
 		
 		return(
-			<div className={className} onClick={ this.passItemId }>
+			<div className={className} onClick={ this.passItemId } aria-expanded={ariaExpanded}>
 				<h3 className="place-title">{ listItem.title }</h3>
 				<div className="place-info">
 					<p dangerouslySetInnerHTML={{ __html: listItem.vicinity }} />

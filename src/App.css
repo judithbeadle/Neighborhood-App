@@ -15,11 +15,19 @@ body, html, #root {
   margin: 0;
   padding: 0;
 }
+
+#nav-access {
+    width: 100%;
+    position: absolute;
+    top: -20em;
+    z-index: 1001;
+}
 /* layout */
 .app {
   height: 100vh;
   display: flex;
   font-family: Roboto;
+  flex-direction: row-reverse;
 }
 
 #map {

@@ -17,7 +17,7 @@ class App extends Component {
       activeLocation: '',
       activeMarker: {},
       map: {},
-      sidebarOpen: false
+      sidebarOpen: true       
    }
 
    // get all locations
@@ -147,21 +147,13 @@ class App extends Component {
          setVisibility = true
       }
       return (
+
         <div className="app">
-          
-          {/* #map is targeted by the initMap function to create the map */}
-          <div id="map">
-            <Map
-              // passing setMarkers function to the map
-              // onSetMarkers={(map) => this.setMarkers(map)}
-              onGetMap = {(map) => this.getMap(map)}
-              //onUpdateMarkers={(map) => this.updateMarkers(map)}
-            />
-          </div>
-          <div id="sidebar" className={classNameSidebar}>
-            <button class="menu" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
-               <span class="screen-reader-text">Show Sidebar</span>
-               <span class="icon"><img src={menuIcon} className="menu-icon" alt="logo" /></span>
+              
+          <main id="sidebar" className={classNameSidebar} tabindex="0">
+            <button tabindex="2" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
+               <span className="screen-reader-text">Show Sidebar</span>
+               <span className="icon"><img src={menuIcon} className="menu-icon"/></span>
             </button>
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
@@ -173,6 +165,15 @@ class App extends Component {
                 onsetActiveLocation={(selectedLocation) => this.setActiveLocation(selectedLocation)}
             />
 
+          </main>
+          {/* #map is targeted by the initMap function to create the map */}
+          <div id="map" title="Google Map" role="application">
+            <Map
+              // passing setMarkers function to the map
+              // onSetMarkers={(map) => this.setMarkers(map)}
+              onGetMap = {(map) => this.getMap(map)}
+              //onUpdateMarkers={(map) => this.updateMarkers(map)}
+            />
           </div>
 
         </div>
