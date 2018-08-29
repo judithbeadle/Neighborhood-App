@@ -42,15 +42,16 @@ class Sidebar extends Component{
 				</header>
 
 				<p className="intro">Small but busy. The Sprengelkiez in Berlin Wedding offers plenty of places for going out. Find your new favourite!</p>
-
-				<select onChange={this.changeCategory} value={this.state.curCategory}>
-	                <option value="select" disabled>Select</option>
-	                <option value="all">All</option>
-	                <option value="bar-pub">Bars and Pubs</option>
-	                <option value="restaurant">Restaurants</option>
-	                <option value="theatre-music-culture">Culture</option>
-	                <option value="dance-night-club">Club</option>
-			   	</select>
+				<div className="select-wrapper">
+					<select onChange={this.changeCategory} value={this.state.curCategory}>
+		                <option value="select" disabled>Select</option>
+		                <option value="all">All</option>
+		                <option value="bar-pub">Bars and Pubs</option>
+		                <option value="restaurant">Restaurants</option>
+		                <option value="theatre-music-culture">Culture</option>
+		                <option value="dance-night-club">Club</option>
+				   	</select>
+			   	</div>
 				<ol className="locations-list">
 					{locations.map((singleLocation) => (
 						
