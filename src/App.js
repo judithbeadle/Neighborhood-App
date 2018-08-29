@@ -4,6 +4,8 @@ import './App.css';
 import Sidebar from './Sidebar.js';
 import Map from './Map.js';
 import * as LocationsAPI from './LocationsAPI'
+import menuOpen from './icons/menu-open.svg';
+import menuClose from './icons/menu-close.svg';
 
 class App extends Component {
 
@@ -120,14 +122,29 @@ class App extends Component {
       
    }
 
+   toggleSidebarVisibility = (event) => {
+      console.log('pressed a button')
+      if(this.state.sidebarOpen === true){
+         this.setState({sidebarOpen: false})
+      } else {
+         this.setState({sidebarOpen: true})
+      }
+   }
+
 
 
    render() {
       let classNameSidebar
+      let menuIcon
+      let setVisibility
       if(this.state.sidebarOpen === true){
          classNameSidebar = 'show'
+         menuIcon = menuOpen
+         setVisibility = false
       } else {
          classNameSidebar = 'hide'
+         menuIcon = menuClose
+         setVisibility = true
       }
       return (
         <div className="app">
@@ -142,7 +159,10 @@ class App extends Component {
             />
           </div>
           <div id="sidebar" className={classNameSidebar}>
-            <div className="menu">Menu</div>
+            <button class="menu" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
+               <span class="screen-reader-text">Show Sidebar</span>
+               <span class="icon"><img src={menuIcon} className="menu-icon" alt="logo" /></span>
+            </button>
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
                 locations = {this.state.locations}
