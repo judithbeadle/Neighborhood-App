@@ -5,7 +5,6 @@ class ListItem extends Component{
 		activeItem: ''
 	}
 
-
 	passItemId = (event) => {
 		let listItem= this.props.listItem
 		
@@ -16,12 +15,19 @@ class ListItem extends Component{
 	// the sidebar holds the list of places
 	render(){
 		let listItem = this.props.listItem
+		let className
+		if(listItem.title === this.props.activeLocation){
+			className = 'location-container active'
+		} else {
+			className = 'location-container'
+		}
+		
 		return(
-			<div className={(listItem.title === this.props.activeLocation) && ('active')} onClick={ this.passItemId }>
-				<h3>{ listItem.title }</h3>
-				<div className="more-info">
+			<div className={className} onClick={ this.passItemId }>
+				<h3 className="place-title">{ listItem.title }</h3>
+				<div className="place-info">
 					<p dangerouslySetInnerHTML={{ __html: listItem.vicinity }} />
-					<p> { listItem.category } </p>
+					<p> { listItem.category.replace("-", ", ") } </p>
 				</div>
 			</div>
 			

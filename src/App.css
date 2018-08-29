@@ -1,12 +1,15 @@
+* {
+	box-sizing: border-box;
+}
 body, html, #root {
   margin: 0;
   padding: 0;
 }
-
+/* layout */
 .App {
-  text-align: center;
   height: 100vh;
   display: flex;
+  font-family: Roboto;
 }
 
 #map {
@@ -16,4 +19,82 @@ body, html, #root {
 
 #sidebar {
 	width:30%;
+	height: 100vh;
+}
+
+/* sidebar
+*/
+
+header{
+	padding: 2em;
+	text-transform: uppercase;
+}
+
+.header-intro{
+	margin-top: 1rem;
+	font-size: 1rem;
+	color: white;
+}
+
+.title {
+	margin: 0;
+	font-size: 2em;
+	color: #f4e451;
+	font-weight: 500;
+}
+
+.intro{
+	padding: 0 2em 2em;
+	margin: 0;
+	color: white;
+}
+
+.sidebar-container{
+	background-color: #5a656b;
+	height: 100%;
+	position: relative;
+	overflow: scroll;
+}
+
+.locations-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.location-item {
+	cursor: pointer;
+}
+
+.place-title {
+	color: #dfe3e5;
+	font-weight: 500;
+	font-size: 1.25em;
+	padding: 1rem 2rem;
+	margin: 0;
+	background-color: #353f44;
+	border-bottom: 1px solid #5a656b;
+}
+
+.active .place-title {
+	color: ;
+}
+
+.place-info {
+	padding: 0 2em;
+}
+
+.locations-list .active {
+	background: #dfe3e5;
+}
+
+.locations-list .place-info{
+	max-height: 0;
+    transition: max-height 0.25s ease-out;
+	overflow: hidden;
+}
+
+.locations-list .active .place-info{
+	background: #ccc;
+	max-height: 10em;
 }

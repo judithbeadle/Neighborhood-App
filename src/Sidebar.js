@@ -32,27 +32,27 @@ class Sidebar extends Component{
 
 		// getting the locations array from the parent
 		const { locations } = this.props
-		const { className } = 'active'
 
 
 		return(
-			<div className="List">
-				<h2>In the Neighborhood</h2>
-				<h3>Sprengelkiez</h3>
+			<div className="sidebar-container">
+				<header>
+					<span className="header-intro">Going out in</span>
+					<h2 className="title">Sprengelkiez</h2>
+				</header>
 
-				<p>Small but busy. The Sprengelkiez in Berlin Wedding offers a lot of places for going out. Find your new favourite!</p>
+				<p className="intro">Small but busy. The Sprengelkiez in Berlin Wedding offers plenty of places for going out. Find your new favourite!</p>
 
 				<select onChange={this.changeCategory} value={this.state.curCategory}>
 	                <option value="select" disabled>Select</option>
 	                <option value="all">All</option>
 	                <option value="restaurant">Restaurants</option>
 	                <option value="bar-pub">Bars and Pubs</option>
-	                
-			   </select>
-				<ol>
+			   	</select>
+				<ol className="locations-list">
 					{locations.map((singleLocation) => (
 						
-						<li key={ singleLocation.id } className={ className } >
+						<li key={ singleLocation.id } >
 							<ListItem 
 								activeLocation = { this.props.activeLocation }
 								listItem = { singleLocation }
