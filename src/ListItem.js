@@ -1,14 +1,28 @@
 import React, { Component } from 'react'
 
 class ListItem extends Component{
+	state = {
+		className: '',
+		activeItem: ''
+	}
+
+
+	passItemId = (event) => {
+		let listItem= this.props.listItem
+		
+		this.setState({activeItem: listItem})
+		this.props.activateLocation(listItem)
+	}
+
 	// the sidebar holds the list of places
 	render(){
+		let listItem = this.props.listItem
 		return(
-			<div className="list-item-wrapper">
-				<h3>{ this.props.locationName }</h3>
+			<div className={this.state.className} onClick={ this.passItemId }>
+				<h3>{ listItem.title }</h3>
 				<div className="more-info">
-					<p dangerouslySetInnerHTML={{ __html: this.props.address }} />
-					<p> { this.props.category } </p>
+					<p dangerouslySetInnerHTML={{ __html: listItem.vicinity }} />
+					<p> { listItem.category } </p>
 				</div>
 			</div>
 			

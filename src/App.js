@@ -12,7 +12,7 @@ class App extends Component {
       locations: [],
       markers: [],
       curCategory: '',
-      activeMarker: ''
+      activeLocation: {}
    }
 
    // get all locations
@@ -26,8 +26,6 @@ class App extends Component {
         console.log('Error While Getting All Locations')
       })
    }
-
-
 
    setCategory(category){
       // taking the category and making it available to all functions via state
@@ -45,61 +43,60 @@ class App extends Component {
          )
          this.setState({locations: filtered})
       }
-      this.updateMarkers()
    }
 
-   setActiveMarker (marker) {
+   selectMarker(activeMarker) {
       return function() {  
-         console.log('this :' + marker)
-         this.setState({activeMarker: marker})
+         this.setActiveLocation(activeMarker)
       }
    } 
 
-   setMarkers = (map, category) => {
+   // this function takes the click on a list item and updates the active location
+   setActiveLocation(selectedItem){
+      this.setState({activeLocation: selectedItem})
+   }
 
-      
+   setMarkers = (map, category, activeLocation, color) => {
+      // check for and clear previously set markers first
+      (this.state.markers.length > 0) && (this.state.markers.map(marker => {
+         marker.setMap(null)
+      }), this.state.markers = []
+      )
       // set markers based current array of locations
       this.state.locations.map(location => {
          let position = { lat: location.position[0], lng: location.position[1] };
          let name = location.title
          let id = location.id
+         let locationObject = location
+
 
          const marker = new window.google.maps.Marker({
            position: position,
+           animation: window.google.maps.Animation.DROP,
+           icon: {
+              path: window.google.maps.SymbolPath.CIRCLE,
+              fillColor: color,
+              fillOpacity: .5,
+              strokeColor: 'white',
+              strokeWeight: .5,
+              scale: 10
+            },
            map: map,
-           title: location.title
+           title: 'marker for ' + location.title
          })
 
          const infowindow = new window.google.maps.InfoWindow({
             content: name
          });
 
-         
+         console.log(marker.icon.fillColor)
 
-         window.google.maps.event.addListener(marker, 'click', this.setActiveMarker(id).bind(this));
+         window.google.maps.event.addListener(marker, 'click', this.selectMarker(infowindow, locationObject).bind(this));
 
          this.state.markers.push(marker)
 
       })
    }
-
-
-   updateMarkers(map){
-      
-      this.clearMarkers()
-      this.setMarkers(map)
-      // update list
-   }
-
-    // clear markers off map and markers array for new category query
-   clearMarkers = () => {
-      this.state.markers.map(marker => {
-         marker.setMap(null)
-      })
-      this.setState({markers: []})
-   }
-
-
 
 
 
@@ -112,23 +109,20 @@ class App extends Component {
           {/* #map is targeted by the initMap function to create the map */}
           <div id="map">
             <Map
-              //initialResult = {this.state.initialResult}
-              // onUpdateLocations = {(locations, map) => this.updateLocations(locations, map)}
-         
+              // passing setMarkers function to the map
               onSetMarkers={(map) => this.setMarkers(map)}
-              onUpdateMarkers={(map) => this.updateMarkers(map)}
-
-
-
+              //onUpdateMarkers={(map) => this.updateMarkers(map)}
             />
           </div>
           <div id="sidebar">
             <Sidebar 
+                // pass locations to show to the sidebar for the locations list
+                locations = {this.state.locations}
+                // category can be updated via sidebar, so this function needs to pass the current category
+                onUpdateCategory={(category) => this.setCategory(category)}
 
-               onUpdateCategory={(category) => this.setCategory(category)}
-               locations = {this.state.locations}
-               selectMarker = {this.state.selectedMarker}
-               activeMarker = {this.state.activeMarker}
+                activeLocation = {this.state.activeLocation}
+                onsetActiveLocation={(selectedLocation) => this.setActiveLocation(selectedLocation)}
             />
 
           </div>

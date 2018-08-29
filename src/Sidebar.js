@@ -6,13 +6,20 @@ class Sidebar extends Component{
 	state = {
 		locations: [],
 		curCategory: '',
-		activeId: ''
+		activeLocation: {}
 	}
 
-	// function to get parent to update list on click
-	updateLocations = (locations) => {
-		this.props.onUpdateLocations(locations)
+	// get all locations
+   componentDidMount() {
+     this.setState({activeLocation: this.props.activeLocation})
+   }
+
+   // when clicked, update both list and markers via app activeLocation id
+   activateLocation(clickedLocation){
+		console.log('hey, I am a sidebar knowing all about: ' + clickedLocation.title)
+		this.props.onsetActiveLocation(clickedLocation)
 	}
+
 
 	changeCategory = (event) => {
 		this.setState({
@@ -33,7 +40,7 @@ class Sidebar extends Component{
 			<div className="List">
 				<h2>In the Neighborhood</h2>
 
-				
+				<p>{this.state.activeLocation.title}</p>
 
 				<select onChange={this.changeCategory} value={this.state.curCategory}>
 	                <option value="select" disabled>Select</option>
@@ -45,13 +52,11 @@ class Sidebar extends Component{
 				<ol>
 					{locations.map((singleLocation) => (
 						
-						<li key={ singleLocation.id } className={ className }>
+						<li key={ singleLocation.id } className={ className } >
 							<ListItem 
-								itemKey = {singleLocation.id}
-								locationName= { singleLocation.title } // returns a string
-								address= { singleLocation.vicinity } // returns a html formated string
-								position= { singleLocation.position } // returns an array of latlang values
-								category = { singleLocation.category } // returns a html formated string
+								activeLocation = { this.state.activeLocation }
+								listItem = { singleLocation }
+								activateLocation = { (clicked) => this.activateLocation(clicked) }
 							/>
 						</li>
 					))}

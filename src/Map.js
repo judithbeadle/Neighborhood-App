@@ -4,7 +4,7 @@ class Map extends Component {
 
   state = {
     map: {},
-    activeMarker: ''
+    activeLocation: {}
   }
  
   // Lifecycle Event - first call to do stuff
@@ -61,14 +61,6 @@ class Map extends Component {
     
   }
 
-  selectMarker = (event) => {
-    this.setState({
-      curCategory: event.target.value
-    })
-    this.props.onUpdateCategory( event.target.value )
-  }
-
-  
   // create a script tag that takes the url and passes the key to the google api
   // this will then call the initMap function
   loadMap = (url) => {
@@ -83,20 +75,15 @@ class Map extends Component {
 
   filterLocations = () => {
     let filteredLocations = this.props.initialResult
-    //let map = map
-    // filter by area
-
     // pass to parent state
     this.props.onUpdateLocations(filteredLocations)
     //this.setState({ locations : filteredLocations })
   }
 
-
-
   render(){
     // grabbing the map object via state for the parent App.js set Markers 
     let map = this.state.map
-    //this.props.onSetArea(area)
+    // we need the parents markers to be passed to the map here  
     this.props.onSetMarkers(map)
 
     // nothing to return from here
