@@ -35,7 +35,7 @@ class Sidebar extends Component{
 
 
 		return(
-			<div className="sidebar-container">
+			<div className="sidebar-container" role="navigation">
 				<header>
 					<span className="header-intro">Going out in</span>
 					<h2 className="title">Sprengelkiez</h2>
@@ -55,7 +55,7 @@ class Sidebar extends Component{
 				<ol className="locations-list">
 					{locations.map((singleLocation) => (
 						
-						<li key={ singleLocation.id } >
+						<li key={ singleLocation.id } className="location-item" >
 							<ListItem 
 								activeLocation = { this.props.activeLocation }
 								listItem = { singleLocation }

@@ -21,3 +21,10 @@ export const getAll = () =>
   fetch(`${api}/places/v1/autosuggest?q=${q}&in=52.5417%2C13.3571%3Br%3D450&Accept-Language=${acceptLanguage}&app_id=${appID}&app_code=${appCode}`)
     .then(res => res.json())
     .then(data => data.results)
+
+/*
+export const getLocationDetails = (locationId)=> {
+  fetch(`${api}v2/venues/explore?&client_id=${clientID}&client_secret=${clientSecret}&polygon=${polygon}&query=${query}&v=20180708`)
+  
+
+*/

@@ -14,7 +14,8 @@ class App extends Component {
       curCategory: '',
       activeLocation: '',
       activeMarker: {},
-      map: {}
+      map: {},
+      sidebarOpen: false
    }
 
    // get all locations
@@ -67,6 +68,7 @@ class App extends Component {
 
    // this function takes the click on a list item and updates the active location
    setActiveLocation(activeLocation){
+      this.state.sidebarOpen = true;
       let activeMarker = this.state.markers.find(al => { return al.title === activeLocation })
       this.setState({activeMarker: activeMarker})
       this.setState({activeLocation: activeLocation})
@@ -141,10 +143,14 @@ class App extends Component {
 
 
    render() {
-      
-         
+      let classNameSidebar
+      if(this.state.sidebarOpen === true){
+         classNameSidebar = 'show'
+      } else {
+         classNameSidebar = 'hide'
+      }
       return (
-        <div className="App">
+        <div className="app">
           
           {/* #map is targeted by the initMap function to create the map */}
           <div id="map">
@@ -155,7 +161,8 @@ class App extends Component {
               //onUpdateMarkers={(map) => this.updateMarkers(map)}
             />
           </div>
-          <div id="sidebar">
+          <div id="sidebar" className={classNameSidebar}>
+            <div className="menu">Menu</div>
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
                 locations = {this.state.locations}
