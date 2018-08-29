@@ -46,8 +46,8 @@ class Sidebar extends Component{
 				<select onChange={this.changeCategory} value={this.state.curCategory}>
 	                <option value="select" disabled>Select</option>
 	                <option value="all">All</option>
-	                <option value="restaurant">Restaurants</option>
 	                <option value="bar-pub">Bars and Pubs</option>
+	                <option value="restaurant">Restaurants</option>
 	                <option value="theatre-music-culture">Culture</option>
 	                <option value="dance-night-club">Club</option>
 			   	</select>
