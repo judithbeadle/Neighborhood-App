@@ -73,26 +73,14 @@ class App extends Component {
       this.setState({activeMarker: activeMarker})
       this.setState({activeLocation: activeLocation})
       this.state.markers.map((marker) => {
-         marker.setIcon({
-            path: window.google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: 'yellow',
-            fillOpacity: 0.8,
-            strokeWeight: 1
-        })
+         marker.setIcon('icons/pointer.png')
       })
       this.bounceMarker(activeMarker)
    }
 
    bounceMarker(activeMarker){
 
-      activeMarker.setIcon({
-            path: window.google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: "#00F",
-            fillOpacity: 0.8,
-            strokeWeight: 1
-        })
+      activeMarker.setIcon('icons/pointer-active.png')
       activeMarker.setAnimation(window.google.maps.Animation.BOUNCE)
 
       setTimeout(function() {
@@ -119,17 +107,9 @@ class App extends Component {
          });
 
          const marker = new window.google.maps.Marker({
-           position: position,
-           animation: window.google.maps.Animation.DROP,
-           icon: {
-              path: window.google.maps.SymbolPath.CIRCLE,
-              fillColor: 'yellow',
-              fillOpacity: .1,
-              strokeColor: 'white',
-              strokeWeight: .5,
-              scale: 10
-            },
-
+            position: position,
+            animation: window.google.maps.Animation.DROP,
+            icon:  'icons/pointer.png',
             map: map,
             title: location.title
          })
