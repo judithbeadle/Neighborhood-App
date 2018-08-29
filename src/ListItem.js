@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 class ListItem extends Component{
 	state = {
-		className: '',
 		activeItem: ''
 	}
 
@@ -18,7 +17,7 @@ class ListItem extends Component{
 	render(){
 		let listItem = this.props.listItem
 		return(
-			<div className={this.state.className} onClick={ this.passItemId }>
+			<div className={(listItem.title === this.props.activeLocation) && ('active')} onClick={ this.passItemId }>
 				<h3>{ listItem.title }</h3>
 				<div className="more-info">
 					<p dangerouslySetInnerHTML={{ __html: listItem.vicinity }} />
