@@ -31,10 +31,10 @@ class Map extends Component {
     // Construct the polygon.
     const area = new window.google.maps.Polygon({
       paths: coordinates,
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
+      strokeColor: '#edc80f',
+      strokeOpacity: 0.5,
+      strokeWeight: 1,
+      fillColor: '#edc80f',
       fillOpacity: 0.2
     });
 
