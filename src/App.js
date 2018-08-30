@@ -143,7 +143,7 @@ class App extends Component {
         <div className="app">
               
           <main id="sidebar" className={classNameSidebar} tabIndex="0">
-            <button tabIndex="2" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
+            <button tabIndex="0" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-expanded={this.state.sidebarOpen}>
                <span className="screen-reader-text">Show Sidebar</span>
                <span className="icon"><img src={menuIcon} className="menu-icon" alt=""/></span>
             </button>

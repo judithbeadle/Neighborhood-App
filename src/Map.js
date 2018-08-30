@@ -85,6 +85,10 @@ class Map extends Component {
       ]
     });
 
+    window.google.maps.event.addListenerOnce(map, 'idle', () => {
+      document.getElementsByTagName('iframe')[0].title = "Google Maps";
+    })
+
     // make the map var available for the render function
     this.setState({map: map})
 
