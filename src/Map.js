@@ -6,11 +6,18 @@ class Map extends Component {
     map: {},
     activeLocation: {}
   }
+
+  // error handling in case google maps does not load 
+  gm_authFailure(){
+    window.alert("There was a problem loading Google Maps" )
+  }
  
   // Lifecycle Event - first call to do stuff
   componentDidMount(){
     this.loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_aopfo8YkyGYkbDGcuwtVEHCl3k4Ays&v=3&libraries=geometry&callback=initMap")
+    window.gm_authFailure = this.gm_authFailure;
   }
+
   // build the map
   initMap = () => {
 
@@ -94,6 +101,7 @@ class Map extends Component {
     script.src = url 
     script.async = true
     script.defer = true
+    script.onerror = function(){window.alert("Google Maps API failed to load data!")}
     index.parentNode.insertBefore(script, index)
     window.initMap = this.initMap
   }
