@@ -32,13 +32,21 @@ class Sidebar extends Component{
 
 		// getting the locations array from the parent
 		const { locations } = this.props
+		locations.map((sL) => {
+			if(sL.title === this.props.activeLocation){
+				sL.ariaExpanded = 'true';
+			} else {
+				sL.ariaExpanded = 'false';
+			}
+		    return sL;
+		})
 
 
 		return(
 			<div className="sidebar-container">
 				<header>
-					<span className="header-intro" tabindex="0">Going out in</span>
-					<h1 className="title" tabindex="1">Sprengelkiez</h1>
+					<span className="header-intro">Going out in</span>
+					<h1 className="title">Sprengelkiez</h1>
 				</header>
 
 				<p className="intro">Small but busy. The Sprengelkiez in Berlin Wedding offers plenty of places for going out. Find your new favourite!</p>

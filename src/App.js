@@ -150,14 +150,15 @@ class App extends Component {
 
         <div className="app">
               
-          <main id="sidebar" className={classNameSidebar} tabindex="0">
-            <button tabindex="2" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
+          <main id="sidebar" className={classNameSidebar} tabIndex="0">
+            <button tabIndex="2" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
                <span className="screen-reader-text">Show Sidebar</span>
                <span className="icon"><img src={menuIcon} className="menu-icon"/></span>
             </button>
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
                 locations = {this.state.locations}
+
                 // category can be updated via sidebar, so this function needs to pass the current category
                 onUpdateCategory={(category) => this.setCategory(category)}
 
@@ -167,7 +168,7 @@ class App extends Component {
 
           </main>
           {/* #map is targeted by the initMap function to create the map */}
-          <div id="map" title="Google Map" role="application">
+          <div id="map" title="Google Map" role="application" tabIndex="-1">
             <Map
               // passing setMarkers function to the map
               // onSetMarkers={(map) => this.setMarkers(map)}
