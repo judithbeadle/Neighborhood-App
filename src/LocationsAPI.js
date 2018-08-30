@@ -21,7 +21,6 @@ export const getAll = () =>
   fetch(`${api}/places/v1/autosuggest?q=${q}&in=${area}&Accept-Language=${acceptLanguage}&app_id=${appID}&app_code=${appCode}`)
     .then(res => res.json())
     .then(data => data.results)
-
 /*
 export const getLocationDetails = (locationId)=> {
   fetch(`${api}v2/venues/explore?&client_id=${clientID}&client_secret=${clientSecret}&polygon=${polygon}&query=${query}&v=20180708`)

@@ -22,13 +22,13 @@ class App extends Component {
 
    // get all locations
    componentDidMount() {
-     LocationsAPI.getAll()
-     .then((initialResult) => {
-        this.setState({ initialResult })
-        this.setCategory('all')
-     }).catch((error) => {
-        alert('Error while getting Locations from HERE.com ')
-        console.log('Error While Getting All Locations')
+      LocationsAPI.getAll()
+      .then((initialResult) => {
+         this.setState({ initialResult })
+         this.setCategory('all')
+      }).catch((error) => {
+        alert('Error while getting API data')
+        console.log('Error while getting API data')
       })
    }
 
