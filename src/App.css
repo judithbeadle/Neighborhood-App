@@ -188,6 +188,25 @@ header{
 		top: 0;
 		right: calc(-100% + 5em);
 	}
+
+	#sidebar .title {
+		font-size: 1.5em;
+	}
+	#sidebar header {
+		padding: 1rem;
+	}
+	#sidebar .intro {
+		font-size: 0.875em;
+		padding: 0 1rem 1rem;
+	}
+	#sidebar .place-title{
+		font-size: 1em;
+		padding: 1rem;
+	}
+	#sidebar .place-info{
+		font-size: 0.875em;
+		padding: 0 1rem;
+	}
 	
 }
 
