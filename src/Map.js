@@ -101,7 +101,6 @@ class Map extends Component {
     script.src = url 
     script.async = true
     script.defer = true
-    script.onerror = function(){window.alert("Google Maps API failed to load data!")}
     index.parentNode.insertBefore(script, index)
     window.initMap = this.initMap
   }

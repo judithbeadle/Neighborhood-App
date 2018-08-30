@@ -70,13 +70,13 @@ class App extends Component {
 
    // this function takes the click on a list item and updates the active location
    setActiveLocation(activeLocation){
-      this.state.sidebarOpen = true;
+      this.setState({sidebarOpen: true});
       let activeMarker = this.state.markers.find(al => { return al.title === activeLocation })
       this.setState({activeMarker: activeMarker})
       this.setState({activeLocation: activeLocation})
-      this.state.markers.map((marker) => {
+      this.state.markers.map((marker) => (
          marker.setIcon('icons/pointer.png')
-      })
+      ))
       this.bounceMarker(activeMarker)
    }
 
@@ -93,20 +93,15 @@ class App extends Component {
    setMarkers = (map, locations, activeLocation) => {
       
       // check for and clear previously set markers first
-      (this.state.markers.length > 0) && (this.state.markers.map(marker => {
-         marker.setMap(null)
-      }), this.state.markers = []
-      )
+      if(this.state.markers.length > 0){
+         this.state.markers.map(marker => (
+            marker.setMap(null)
+         ))
+         this.state.markers = []
+      }
       // set markers based current array of locations
       locations.map(location => {
          let position = { lat: location.position[0], lng: location.position[1] };
-         let name = location.title
-         let id = location.id
-         let locationObject = location
-
-         const infowindow = new window.google.maps.InfoWindow({
-             content: name
-         });
 
          const marker = new window.google.maps.Marker({
             position: position,
@@ -136,15 +131,12 @@ class App extends Component {
    render() {
       let classNameSidebar
       let menuIcon
-      let setVisibility
       if(this.state.sidebarOpen === true){
          classNameSidebar = 'show'
          menuIcon = menuOpen
-         setVisibility = false
       } else {
          classNameSidebar = 'hide'
          menuIcon = menuClose
-         setVisibility = true
       }
       return (
 
@@ -153,7 +145,7 @@ class App extends Component {
           <main id="sidebar" className={classNameSidebar} tabIndex="0">
             <button tabIndex="2" className="menu" aria-label="Click for a full list of neighborhood places" onClick={ this.toggleSidebarVisibility } aria-controls="primary-menu" aria-expanded={this.state.sidebarOpen}>
                <span className="screen-reader-text">Show Sidebar</span>
-               <span className="icon"><img src={menuIcon} className="menu-icon"/></span>
+               <span className="icon"><img src={menuIcon} className="menu-icon" alt=""/></span>
             </button>
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
