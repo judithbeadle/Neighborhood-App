@@ -42,6 +42,7 @@ body, html, #root {
 	height: 100vh;
 	position: relative;
 	align-self: flex-end;
+	z-index: 10000;
 }
 
 

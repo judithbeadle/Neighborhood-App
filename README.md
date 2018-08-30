@@ -40,7 +40,7 @@ This starts the app locally on: `http://localhost:3000`
 
 ## API Data
 
-TODO
+The app uses data from the [here places API](https://places.cit.api.here.com/places/) via an API query - you can reset a number of parameters by changing keywords, area, area radius etc in the LocationsAPI.js file
 
 
 ## Acknowledgements and Sources
