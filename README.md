@@ -37,6 +37,15 @@ Then follow the steps below:
 
 This starts the app locally on: `http://localhost:3000`
 
+## Using the service worker
+
+You can also use the app offline. To this end a service worker is included in the project.
+The service worker is implemented only in the production build, to run the application in the production build follow these steps:
+
+1. npm run build
+2. serve -s build (if you have not installed serve, you can do so by running npm install -g serve first)
+3. navigate to http://localhost:5000/
+
 
 ## API Data
 
