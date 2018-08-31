@@ -89,13 +89,16 @@ class Sidebar extends Component{
 					</li>
 					)) :
 					// if locations is undefined, display an  error message
-					<p className="error info">Sorry, we couldn't find any location information.</p> }
+					<p className="error info">Sorry, we couldn't find any location information.
 
 					{ // one more check to see if locations is undefined (API error) or if there was simply no data
-						locations === 0  ? 
-						<p className="error info">Try another category to find some great places.</p> 
-						: <p className="error info">Something went wrong with the here API request. </p>
+						locations !== undefined  ? 
+						<span>Try another category to find some great places.</span> 
+						: <span className="error info">Something went wrong with the here API request. </span>
 					}
+					</p> }
+
+					
 				</ol>
 			</div>
 		)
