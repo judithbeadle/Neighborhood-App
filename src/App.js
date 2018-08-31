@@ -51,7 +51,7 @@ class App extends Component {
          let filtered = this.state.initialResult.filter(location => (
             // this is the function to filter the intial result and set up default list of locations
             location.category === category
-            //console.log(this.state.curCategory) // this is just for testing purposes - TODO figure out how to implement the containsLocation() function
+            
             )
          )
          this.setState({locations: filtered})
@@ -147,6 +147,8 @@ class App extends Component {
                <span className="screen-reader-text">Show Sidebar</span>
                <span className="icon"><img src={menuIcon} className="menu-icon" alt=""/></span>
             </button>
+
+
             <Sidebar 
                 // pass locations to show to the sidebar for the locations list
                 locations = {this.state.locations}

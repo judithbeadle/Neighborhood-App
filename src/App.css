@@ -95,6 +95,21 @@ header{
 	color: white;
 }
 
+p { line-height: 1.4 }
+
+p.error {
+	background-color: #edc80f;
+	padding: 1rem;
+	font-weight: 600;
+}
+
+p.error.info {
+	background-color: #dfe3e5;
+	margin-top: 0;
+	font-weight: normal;
+	font-style: italic;
+}
+
 .sidebar-container{
 	background-color: #5a656b;
 	height: 100%;

@@ -32,14 +32,18 @@ class Sidebar extends Component{
 
 		// getting the locations array from the parent
 		const { locations } = this.props
-		locations.map((sL) => {
-			if(sL.title === this.props.activeLocation){
-				sL.ariaExpanded = 'true';
-			} else {
-				sL.ariaExpanded = 'false';
-			}
-		    return sL;
-		})
+
+		if (locations){
+			locations.map((sL) => {
+				if(sL.title === this.props.activeLocation){
+					sL.ariaExpanded = 'true';
+				} else {
+					sL.ariaExpanded = 'false';
+				}
+			    return sL;
+			})
+		}
+		
 
 
 		return(
@@ -50,6 +54,9 @@ class Sidebar extends Component{
 				</header>
 
 				<p className="intro">Small but busy. The Sprengelkiez in Berlin Wedding offers plenty of places for going out. Find your new favourite!</p>
+				
+				{ locations!= undefined ? 
+				// if locations is defined, display category selection and location data here
 				<div className="select-wrapper">
 					<select onChange={this.changeCategory} value={this.state.curCategory} title="choose your category">
 		                <option value="select" disabled>Select</option>
@@ -60,18 +67,28 @@ class Sidebar extends Component{
 		                <option value="dance-night-club">Club</option>
 				   	</select>
 			   	</div>
+
+			   	: // if locations is undefined, display an  error message
+				<p className="error">Error!</p>
+				}
+
+
 				<ol className="locations-list">
-					{locations.map((singleLocation) => (
-						
-						<li key={ singleLocation.id } className="location-item">
-							<ListItem 
-								activeLocation = { this.props.activeLocation }
-								listItem = { singleLocation }
-								activateLocation = { (clicked) => this.activateLocation(clicked) }
-							/>
-						</li>
-					))}
+
 					
+				{ locations!= undefined ? 
+				// if locations is defined, display category selection and location data here
+					locations.map((singleLocation) => (
+					<li key={ singleLocation.id } className="location-item">
+						<ListItem 
+							activeLocation = { this.props.activeLocation }
+							listItem = { singleLocation }
+							activateLocation = { (clicked) => this.activateLocation(clicked) }
+						/>
+					</li>
+					)) : 
+					// if locations is undefined, display an  error message
+					<p className="error info">Sorry, there was a problem getting location data from the here API</p>}
 				</ol>
 			</div>
 		)
