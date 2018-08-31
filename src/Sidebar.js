@@ -76,8 +76,9 @@ class Sidebar extends Component{
 				<ol className="locations-list">
 
 					
-				{ locations!= undefined ? 
+				{ locations !== undefined && locations.length > 0 ?
 				// if locations is defined, display category selection and location data here
+				
 					locations.map((singleLocation) => (
 					<li key={ singleLocation.id } className="location-item">
 						<ListItem 
@@ -86,9 +87,15 @@ class Sidebar extends Component{
 							activateLocation = { (clicked) => this.activateLocation(clicked) }
 						/>
 					</li>
-					)) : 
+					)) :
 					// if locations is undefined, display an  error message
-					<p className="error info">Sorry, there was a problem getting location data from the here API</p>}
+					<p className="error info">Sorry, we couldn't find any location information.</p> }
+
+					{ // one more check to see if locations is undefined (API error) or if there was simply no data
+						locations !== undefined  ? 
+						<p className="error info">Try another category to find some great places.</p> 
+						: <p className="error info">Something went wrong with the here API request. </p>
+					}
 				</ol>
 			</div>
 		)

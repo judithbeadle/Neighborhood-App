@@ -105,9 +105,12 @@ p.error {
 
 p.error.info {
 	background-color: #dfe3e5;
-	margin-top: 0;
+	margin: 0;
 	font-weight: normal;
 	font-style: italic;
+}
+p.error.info + p.error.info {
+	padding-top: 0;
 }
 
 .sidebar-container{
