@@ -92,7 +92,7 @@ class Sidebar extends Component{
 					<p className="error info">Sorry, we couldn't find any location information.</p> }
 
 					{ // one more check to see if locations is undefined (API error) or if there was simply no data
-						locations !== undefined  ? 
+						locations === 0  ? 
 						<p className="error info">Try another category to find some great places.</p> 
 						: <p className="error info">Something went wrong with the here API request. </p>
 					}
