@@ -1,6 +1,6 @@
 # My Neighborhood App
 
-The app that helps you find places in Sprengelkiez, Berlin - Udacity Course Final Project with React 
+The app that helps you find places in Sprengelkiez, Berlin - Udacity Course Final Project with React. Try it out [here](https://judithbeadle.github.io/Neighborhood-App/).
 
 
 ## Project Overview
@@ -67,7 +67,7 @@ To create the app I have followed the online course 'Building with React' as wel
 ### Specific Resources
 
 * [here places API](https://places.cit.api.here.com/places/)
-* [getting started with react google map]https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
+* [getting started with react google map](https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb)
 * [Stackoverflow: turning a string into html](https://stackoverflow.com/questions/39758136/render-html-string-as-real-html-in-a-react-component)
 * [Google map documentation & tutorial](https://developers.google.com/maps/documentation/javascript/tutorial)
 * [Google Documentation on creating a polygon](https://developers.google.com/maps/documentation/javascript/examples/polygon-simple)
